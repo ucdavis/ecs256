@@ -1,0 +1,144 @@
+
+<h1>
+Problem Set 2:  Markov chains
+</h1>
+
+<h2>Due Wednesday, October 19, 11:59 pm</h2>
+
+<h2>1.</h2>
+
+<p>
+Consider a finite-state space, aperiodic Markov chain with 
+transition matrix P.  Our textbook shows a way to 
+find the stationary probability vector &pi; that is alternative to the
+usual method that solves a system of linear equations.  Say the matrix
+is of size r x r.  The thrust of the argument is as follows:
+</p>
+
+<UL>
+
+<li> The power P<sup>k</sup> is the k-step transition matrix.  So, row 1
+of the matrix is P(X<sub>k</sub> = j | X<sub>0</sub> = 1), j = 1,...,r.
+Row 2 is P(X<sub>k</sub> = j | X<sub>0</sub> = 2), j = 1,...,r, and so
+on.
+</li> </p> 
+
+<li> We know that for an aperiodic chain, P(X<sub>k</sub> = j |
+X<sub>0</sub> = i) &rarr; &pi;<sub>j</sub> as k &rarr; &infin;.
+</li> </p> 
+
+<li> Thus for large k, each row of P<sup>k</sup> will be approximately
+the vector &pi;'.
+</li> </p> 
+
+<li> So, to find &pi;, we could raise P to a large power, then use row 1
+as &pi;.
+</li> </p> 
+
+<li> But even better, we could average all the rows, which presumably
+will give us a better estimate.
+</li> </p> 
+
+</UL>
+
+<p>
+Investigate the accuracy of this approach, as follows:
+</p>
+
+<UL>
+
+<li> Do your experiments for one small P and one large one, of your
+choice.
+</li> </p>
+
+<li> For values of k = 1,2,3,...,m (your choice of m):  Find the 
+estimates of &pi;, both using row 1 only and averaging all the rows.  
+Take as your accuracy criterion the l<sub>1</sub> distance (sum 
+of absolute differences) of the estimated &pi; to the actual value.
+</li> </p> 
+
+<li> Show your results graphically, with commentary in a <b>.tex</b> file.
+</li> </p> 
+
+</UL>
+
+<h2>2.</h2>
+
+<p>
+Consider the states of a Markov chain over time, 
+X<sub>0</sub>,
+X<sub>1</sub>,
+X<sub>2</sub>,
+..., with the state space being some subset of the set of all integers,
+which we will take to be 1,...,m.  Suppose the chain has a 
+stationary distribution &pi;, and that X<sub>0</sub> has this distribution.
+</p>
+
+<p>
+There is a term from time series analysis, <i>autocorrelation</i>:
+&rho;(k), defined to be the correlation beteen X<sub>i</sub> and
+X<sub>i+k</sub>.  Note that this quantity depends only on k, not i.
+</p>
+
+<p> <OL type = "a">
+
+<li> Explain why there is no dependence on i (<b>.tex</b> file).
+</li> </p> 
+
+<li> Write an R function with call form
+</p>
+
+<pre>
+MCautocor(k,P)
+</pre>
+
+<p>
+(Note that an argument <b>m</b> is not needed.  Explain why.)
+</li> </p> 
+
+</OL>
+
+<h2>3.</h2>
+
+<p>
+Consider the ALOHA model with 3 stations.  Derive the long-
+run average time between collisions.  Expression your answer in terms of
+p, q and &pi;, and evaluate for the case p = 0.4, q = 0.3.
+Show your reasoning 
+in a <b>.tex</b> file.
+</p>
+
+<h2>4.</h2>
+
+<p>
+Consider a Markov chain with finite state space.  
+</p>
+
+<p> <OL type = "a">
+
+
+<li> Write an R function with call form
+</p>
+
+<pre>
+eTij(P)  # P is the transition matrix
+</pre>
+
+<p>
+giving the values of ET<sub>ij</sub>.
+</p>
+</li> </p> 
+
+<li> Do the same for variance, writing a function
+
+<pre>
+varTij(P)  # P is the transition matrix
+</pre>
+
+<p>
+that finds all Var(T<sub>ij</sub>), where T<sub>ij</sub> is the same it
+takes to go from state i to state j.  Show your derivation 
+in a <b>.tex</b> file.
+</p>
+
+</ol>

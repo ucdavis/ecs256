@@ -1,0 +1,3192 @@
+
+<h1>
+ECS 256 Blog
+</h1>
+
+<h2> Fall 2022
+</h2>
+
+<b>Nov. 17, 0750:</b>
+
+<p>
+In this post, I will give more detail on the proof from Nov. 14, 1300,
+and explain how this relates to the Method of Stages.
+</p>
+
+<OL>
+
+<li> Let q<sub>t</sub> be the t<sup>th</sup> quantile of the random variable
+X, i.e. P(X &les; q<sub>t</sub>) = t.
+</li> </p> 
+
+<li> Let W have a U(0,1) distribution.
+</li> </p> 
+
+<li> Set G = F<sub>X</sub><sup>-1</sup>.
+</p>
+
+<p>
+Here "-1" means function inverse, in the sense that sin and arcsin are
+inverses of each other, and the same with square and square root etc.
+</li> </p> 
+
+<li> Set S = G(W).
+</li> </p> 
+
+<li> 
+F<sub>S</sub>(v) = P(S &leq; v) = P[G(W) &leq; v]
+</li> </p> 
+
+<li>
+Retain the first and last expressions in Step 5:
+</p>
+
+<p>
+F<sub>S</sub>(v) = P[G(W) &leq; v]
+</li> </p> 
+
+<li> 
+In Step 6, 
+in the expression G(W) &leq; v, apply F<sub>X</sub> to both sides.  This
+yields:
+</li> </p> 
+
+<li> 
+F<sub>S</sub>(v) = P[W &leq; F<sub>X</sub>(v)]
+</li> </p> 
+
+<li>
+But W has a U(0,1) distribution, so Step 8 becomes
+</p>
+
+<p>
+F<sub>S</sub>(v) = F<sub>X</sub>(v)
+</li> </p> 
+
+<li>
+So, S and X have the same cdf!  Thus they have the same
+distribution.
+</li> </p> 
+
+</OL> 
+
+<p>
+Now, how is the relevant to the Method of Stages?  
+</p>
+
+<OL type = "a">
+
+<li> 
+Recall that, given a holding time random variable X, we first find a set
+of quantiles of some granularity.  
+</li> </p> 
+
+<li> 
+Say we use 9 quantiles. In the above notation, these would be 
+denoted q<sub>0.10</sub>, q<sub>0.20</sub>, ..., q<sub>0.90</sub>,
+but let's name them q<sub>1</sub>, q<sub>2</sub>,...,q<sub>9</sub>
+instead.
+</li> </p>
+
+<li> To approximate X, we choose one of those 9 quantiles with
+probability 1/9 each.  
+</li> </p>
+
+<li> Give the name W to the index, 1,2,...,9 generated in Step (c)
+above.  <i>Note that W is uniformly distributed on the set
+{1,2,...,9}.</i>
+</li> </p> 
+
+<li> 
+F<sub>X</sub><sup>-1</sup> gives us the set of all infinitely many quantiles.
+</li> </p> 
+
+<li> 
+Give the name S to our approximate substitute for X, which chooses a
+q<sub>i</sub>.  Then
+ 
+<p>
+S = q<sub>W</sub> = F<sub>X</sub><sup>-1</sup>(W/10)
+</p>
+</li> </p> 
+
+<li>
+So, S = F<sub>X</sub><sup>-1</sup>(W/10),
+</p>
+
+<p>
+similar to Steps 2-4 above.  There W's U(0,1) distribution meant that
+S essentially chooses from all infinitely many quantiles, with equal 
+"probability" for each.  Now here we choose from a finite number of 
+quantiles, but again with uniform probability.
+</li> </p> 
+
+<li> Thus the S here should indeed have approximately the same
+distribution as X.  And the more quantiles we use, the better the
+approximation.
+</li> </p> 
+
+<li> 
+Try it!  Start with any X, say f<sub>X</sub>(t) =
+0.04 t on (0,5); find its quantiles, say 9 of them, to get S; do this
+1000 times, to get 1000 Ss; plot the latter and see whether they
+approximately look like f<sub>X</sub>.  If not, try 99 quantiles, etc.
+</li> </p>
+
+</OL> 
+
+
+
+
+
+
+
+<b>Nov. 16, 0850:</b>
+
+<p>
+Our room request has now been approved!  we have Cruess 107 from 9 to
+10 (and of course 10-11), Dec. 2.
+</p>
+
+<p>
+I will need a statement from each of you that states your agreement to
+extend the Group Quiz time from 10-11 to 9-11.  If you prefer 9:30-11,
+please so indicate.
+</p>
+
+<p>
+Please note that for legal reasons we need 100% consent on this;
+otherwise, we will hold the Group Quiz during 10-11.
+</p>
+
+<p>
+Please notify me by e-mail, as soon as possible.  
+</p>
+
+<b>Nov. 15, 2240:</b>
+
+<p>
+Our unit on Mixture and Hidden Markov Models is finally ready,
+<a href="https://heather.cs.ucdavis.edu/~matloff/256/MixHMM.pdf">here</a>.
+</p>
+
+<b>Nov. 14, 1300:</b>
+
+<p>
+Please make sure you understand the following, related to the blog post
+describing the Method of Stages.  (Note:  The standard notation for the
+cumulative distribution function of a random variable R is
+F<sub>R</sub>.)
+</p>
+
+<p>
+Let q<sub>t</sub> be the t<sup>th</sup> quantile of the random variable
+X, i.e. P(X &les; q<sub>t</sub>) = t.  Let W have a U(0,1) distribution,
+and set
+</p>
+
+<p>
+G = F<sub>X</sub><sup>-1</sup>(W)
+</p>
+
+<p>
+Here "-1" means function inverse, in the sense that sin and arcsin are
+inverse of each other, and the same with square and square root etc.
+</p>
+
+<p>
+Set S = G(W).
+</p>
+
+<p>
+Let's find F<sub>S</sub>.
+</p>
+
+<p>
+F<sub>S</sub>(v) = P(S &leq; v) =
+P[G(W) &leq; v] 
+</p>
+
+<p>
+In the expression G(W) &leq; v, apply F<sub>X</sub> to both sides,
+yielding
+</p>
+
+<p>
+P[W &leq; F<sub>X</sub>(v)]
+</p>
+
+<p>
+But since W has a U(0,1) distribution,
+that last probability is just F<sub>X</sub>(v),
+which by definition of q<sub>t</sub> is q<sub>v</sub>.
+</p>
+
+<p>
+Putting all this together, we have
+</p>
+
+<p>
+F<sub>S</sub>(v) = q<sub>v</sub>
+</p>
+
+<p>
+So, S and X have the same quantiles!  Thus they have the same
+distribution.
+</p>
+
+<p>
+In the blog post on the Method of Stages, I receive to deciles, but for
+better accuracy we should use a lot of quantiles, say for instance 999
+of them.  Our U(0,1) variable above is similar to our choosing one of the 
+999 quantiles, with probability 1/999 each.
+</p>
+
+<b>Nov. 10, 2050:</b>
+
+<p>
+Starting next week, I will be extending my Wednesday office hours.  The
+new time will be 2-4 pm, rather than 2-3 as before.  I'm doing this
+mainly to better advise you on your Term Project work, but of course
+you are welcome to ask anything in the course.
+</p>
+
+<b>Nov. 10, 0955:</b>
+
+<p>
+As I mentioned yesterday, I am currently preparing our unit on Mixture
+and Hidden Markov Models.  It will make use of the R 
+packages <b>mixtools</b> and <b>hmmr</b>.  As this topic is likely to be
+on our Group Quiz, please install these packages on your machines.
+</p>
+
+<b>Nov. 9, 2025:</b>
+
+<p>
+Problem A specs fixed now.  Please read the entire new problem
+statement, mostly the same as before but with a change to how K evolves,
+and a new parameter p.
+</p>
+
+<b>Nov. 9, 1535:</b>
+
+<p>
+In Problem A, I misspecified the policy under which a nurse
+is removed from service.  I will fix that this evening.
+</p>
+
+<b>Nov. 8, 1740:</b>
+
+<p>
+You should received your Quiz 3 scores by e-mail a few minutes ago.  A
+few comments:
+</p>
+
+<UL>
+
+<li> Sadly, Problem 1 had a typo, which neither Jay nor I caught during
+the review of the draft.  So, everyone got full credit.
+</li> </p> 
+
+<li> The solutions are posted
+<a href="https://heather.cs.ucdavis.edu/~matloff/256/Exams/">here </a>. 
+</li> </p> 
+
+<li> Remember, a big feature of OMSI is that you can run your code.
+Many students forgot to remove the "Put your answer here" line in the
+answers box, making their code unrunnable.  Of course, this was partly
+due to the glitch in Questions.txt, and I did run your code via
+copy-and-paste, but make sure to actually try your code on the Group
+Quiz.
+</li> </p> 
+
+<li> The mean point totals for Questions 1-5 were
+</p>
+
+<pre>
+20
+8.333333
+13.33333
+10.83333
+3.333333
+</pre>
+
+<li> Let me know if you have any questions.
+</li> </p> 
+
+</UL>
+
+<b>Nov. 8, 1355:</b>
+
+<p>
+I figured out the source of the "Not authorized" error everyone was
+getting in last Friday's quiz.  A perfect example of my motto,
+"Computers never work."  Unfortunate, but there is a lesson there.
+</p>
+
+<p>
+On any quiz, I first write a draft of both the questions and answers,
+which Jay then checks over for errors, ambiguous wording etc.
+Since I would not be present during the quiz, I wanted to make sure
+everything would run smoothly, so Jay and I got everything ready far in
+advance.
+</p>
+
+<p>
+Sadly, though, he and I both missed a technical error in the
+Questions.txt file.  In OMSI, a non-code problem is designated by a
+simple line
+</p>
+
+<pre>
+QUESTIONS
+</pre>
+
+<p>
+But a code problem gives the command for executing the code, e.g.
+</p>
+
+<pre>
+QUESTION -ext .R -run 'Rscript omsi_answer2.R'
+</pre>
+
+<p>
+This states that the file suffix will be .R, and it will be run via
+Rscript.
+</p>
+
+<p>
+Unfortunately, we did not include that extra information.  Very sorry
+for the error!
+</p>
+
+<b>Nov. 8, 0830:</b>
+
+<p>
+On interactive grading of homework:
+</p>
+
+<UL>
+
+<li> I use this system in every course I teach, grad or undergrad.
+</li> </p> 
+
+<li> The TA does a prescreening, checking that the code, and in a
+mathematical course the equations, are correct.  If so, everyone in the
+group starts with an A on that assignment.
+</li> </p> 
+
+<li> But that is a collective grade, and the university asks me to give
+individual grades.  And grades are supposed to measure student insight,
+which is different from amount of time spent.  
+</p>
+
+<p>
+For instance, consider the Homework 2 problem in which you were to find
+the mean time between collisions.  There is a big difference between
+on the one hand, seeing <i>how</i> to find this value, and on the other
+hand, <i>implementing</i> that math in code.
+</li> </p>
+
+<li> Hence the use of interactive grading, where I probe further.
+</li> </p> 
+
+<li> Your grade on an assignment then factors in both Jay's and my
+assessment.  It is certainly NOT the case that the grade is based 
+purely on the interactive grading.  
+<b>
+If for instance you get an A- grade for an assignment, then
+grading purely on the interactive session would probably have resulted
+in your getting a B+ rather than A-.
+</b>
+</li> </p> 
+
+<li> I do take grading very seriously.  As I mentioned yesterday, I
+strive to be both <i>fair</i> and <i>accurate</i>  Like many professors,
+I am appalled at the fact that many professors these days give something
+like 30% A+ grades--that's A PLUS, not just A--in their undergrad
+courses.  
+</li> </p> 
+
+<li> In a grad course, though, I do give mostly "A" grades, "A" meaning A+,
+A or A- and "mostly" meaning, say, 2/3.  I expect this to be 
+the case for our class.
+</li> </p> 
+
+</UL>
+
+<p>
+<b>Now, LOOKING FORWARD:</b>
+</p>
+
+<UL>
+
+<li> Note that there is NO interactive grading for the TERM PROJECT.
+You are graded entirely on the basis of the quality of your report.
+</li> </p> 
+
+<li> Individual contributions are factored in via the self-assessment
+statements from each team member, in the written report.
+</li> </p>
+
+<li> Note again my earlier statement in this blog:  
+</p>
+
+<blockquote>
+"...in any class I teach, grad or undergrad, I place very high priority
+on the Term Project. A good paper there can more than compensate for
+weak performance on the quizzes [or homework]."
+</blockquote>
+</li> </p> 
+
+<li> I elaborated on this in the Directions section of the Term Project
+specs:
+</p>
+
+<blockquote>
+
+Groups that put in a reasonable amount of time--and thought!--
+almost always receive an A or A+ grade on the project.  (Individual
+grades may possibly be affected by the amount each team member
+contributed, but it is extremely rare for different members of a team to
+get different Project grades, unlike the Homework situation.)  As
+explained earlier,
+<b>
+your Project grade may have a major impact on your
+course grade, e.g. a B grade becoming A-.
+</b>
+
+
+</blockquote>
+
+</UL>
+
+<b>Nov. 7, 2125:</b>
+
+<p>
+Problem B of the Term Project is ready, and the Project specs are now
+complete.  There will be no Problem C.
+</p>
+
+<p>
+<b>START EARLY!</b>  There is a ton of things for your team to
+discuss/debate, and the work in implementation will involve many
+unexpected speedbumps.
+</p>
+
+<b>Nov. 7, 2125:</b>
+
+<p>
+I have now completed the directions for writing up and submitting your
+project.  <b>Please read these NOW,</b> especially regarding a required
+section in your report that describes the contribution of each team
+member.
+</p>
+
+<b>Nov. 7, 1505:</b>
+
+<p>
+When I corrected the Quiz 3 answers file yesterday, I did not copy to
+the 256 Web site.  Fixed now.
+</p>
+
+<b>Nov. 7, 1350:</b>
+
+<p>
+I just talked to two students in my office regarding their Homework
+grades.  I checked my notes, and explained the reasons behind my
+assessment.  I offered to do a regrade for one of the students, which
+resulted in a substantial increase in the student's grade.
+</p>
+
+<p>
+A few important points:
+</p>
+
+<UL>
+
+<li> I was glad to see that these students felt comfortable with
+approaching me.  I do indeed welcome such queries.
+</li> </p> 
+
+<li> In grading any class, I strive really, really hard to be 
+<i> fair and consistent.</i>  I told the students a story 
+about an unfair grade I'd gotten as a student "infinitely many 
+years ago."  I still remember that, and it affects the
+way I grade.
+</li> </p> 
+
+<li> On the other hand, I strive to be <i>accurate</i> in my grading.
+I do check whether a student really understands the issues, rather than
+just stating a bunch of vague words or memorized concepts.
+</li> </p> 
+
+<li> If anyone else would like a regrade (in this case, I offered to do
+one; the student didn't request it), I'd be happy to do so.
+</li> </p>
+
+</UL>
+
+
+
+<b>Nov. 6, 2125:</b>
+
+<p>
+Many thanks to Franklin for catching a couple of errors in the Quiz 3
+answers file.
+</p>
+
+<b>Nov. 6, 2010:</b>
+
+<p>
+In Problem A in the Term Project, and in fact in the entire Term
+Project, keep in mind that the most important aspect is your
+<i>analysis.</i>  Problem A asks you to write some code, yes, but what I
+will look at most closely is your investigation of this modeled system;
+explain well your choices of what to investigate, how you investigated, and
+the results.
+</p>
+
+<b>Nov. 6, 0705:</b>
+
+<p>
+News items:
+</p>
+
+<UL>
+
+<li> Tomorrow's lecture will be devoted to exploring how some of our
+discrete-time models might be converted to continuous-time.
+</li> </p> 
+
+<li> I've not graded the quiz yet, as my current priority is the Term
+Project.  However, based on the spot check I conducted, it seems that
+many students found this quiz challenging.  As usual, the quiz questions
+and answers are posted in <a href="">https://heather.cs.ucdavis.edu/~matloff/256/Exams/Answers3F22.txt</a>. 
+</li> </p> 
+
+<li> But don't worry much about your quiz grades.  As I've said before,
+in any class I teach, grad or undergrad, I place very high priority on the
+Term Project.  A good paper there can more than compensate for weak
+performance on the quizzes.
+</li> </p>
+
+<li> As you know, Problem A of the Term Project has been ready for a
+while.  I'm currently working on setting up Problem B, on the Method of
+Stages.  Problem C will tentatively be on Hidden Markov Models, to be
+covered in class in upcoming lectures.
+</li> </p> 
+
+</UL>
+
+<b>Nov. 2, 1940:</b>
+
+<p>
+Please note that I have clarified my post of Oct. 27, 1355, noting that
+the exponential distribution family, including the Computer Worm Model,
+is covered on Friday's quiz.
+</p> 
+
+<b>Nov. 2, 1905:</b>
+
+<p>
+Concerning the Q matrix:
+</p>
+
+<p>
+Mainly, we will use Q to find &pi;.  As I said here in the blog
+yesterday, you need not understand my post of Oct. 31, 1210 in detail.
+</p>
+
+<p>
+The matrix Q does enter in here, because it is a derivative, and so
+"small t" statements can be made, in the same way as it is stated
+that P(X<sub>t</sub> = 0) &approx; 1 - &lambda; t elsewhere in the blog.
+Q is a matrix of derivatives, and it plays a similar role, 
+but do NOT feel that you need to understand this.
+</p>
+
+<p>
+Again, for us, the only role Q has is to find &pi;.  Please make sure
+you fully understand the "flow in = flow out" arguments throughout the
+chapter on continuous time Markov chains.
+</p>
+
+<p>
+If you do wish to learn more on the material in the blog post of Oct.
+31, 1210, plug "Kolmogorov forward equations into Google."
+</p>
+
+<b>Nov. 1, 1835:</b>
+
+<p>
+The post of Oct. 31, 1210 was intended for curiosity purposes only; you
+will not be held responsible for it on quizzes.  
+</p>
+
+<b>Nov. 1, 1825:</b>
+
+<p>
+Note that the coverage of Quiz 3 was announced in the blog post of Oct.
+27, 1355.  It will not cover autocorrelation, as I had previously thought.
+</p>
+
+<b>Nov. 1, 0945:</b>
+
+<p>
+In your Homework writeups you were required to do a good, professional
+job.  Now, that is even more important for the Term Project.
+</p>
+
+<p>
+Among other things, that means that your names should be in the title
+section of your report. :-)  I was surprised to see that some groups did
+not have this.
+</p>
+
+<p>
+Also, one group displayed matrices as a LaTeX table rather than a LaTeX
+matrix.  This of course is not acceptable.
+</p>
+
+<b>Oct. 31, 1955:</b>
+
+<p>
+Below is my induction proof of Eqn. (9.28).  I had dismissed it as easy,
+which it is, but now that I have given it more thought, it turns out
+there is a tricky part.
+</p>
+
+<UL>
+
+<li> k = 2:  Proved in the text.
+</li> </p> 
+
+<li> Inductive step:  Suppose it is true for k = 2,...,r.  Consider the
+case of k = r+1, and let M = min(W<sub>1</sub>,...,W<sub>r</sub>).  Then 
+</p>
+
+<p>
+min(W<sub>1</sub>,...,W<sub>r</sub>,W<sub>r+1)</sub> = 
+min(M,W<sub>r+1</sub>)   (Eqn. A)
+</p>
+
+From Theorm 18, M is exponentially distributed, with lambda value
+&lambda;<sub>1</sub> +...+ &lambda;<sub>r</sub>
+</p>
+
+<p>
+So the right-hand side of Eqn. (A) above is 
+the minimum of two exponentially distributed random variables--in 
+other words, <b>we are back to the case k=2.</b>  So,
+</p>
+
+<p>
+P(M = min(M,W<sub>r+1</sub>) = 
+(&lambda;<sub>1</sub> +...+ &lambda;<sub>r</sub>) /
+(&lambda;<sub>1</sub> +...+ &lambda;<sub>r</sub> + &lambda;<sub>r+1</sub>) 
+</p>
+
+<p>
+But also from the inductive step
+</p>
+
+<p>
+P(W<sub>i</sub> = M) =
+&lambda;<sub>i</sub> /
+(&lambda;<sub>1</sub> +...+ &lambda;<sub>r</sub>)
+</p>
+
+<p>
+Multiplying the last two fractions, we get 
+</p>
+
+<p>
+P(W<sub>i</sub> = min) =
+&lambda;<sub>i</sub> /
+(&lambda;<sub>1</sub> +...+ &lambda;<sub>r+1</sub>),
+which was to be proved.  QED.
+</p>
+
+</UL>
+
+<b>Oct. 31, 1945:</b>
+
+<p>
+Corrected Machine Repair Model diagram.
+</p>
+
+<img src = "MRmodel.jpg" height = "400" width = "400">
+<br>
+
+<b>Oct. 31, 1415:</b>
+
+<p>
+My department chair suddenly called me to his office, so I missed part
+of my office hour just now.  If you wanted to see me, I will still be
+here until 3.  Or, we can have a Zoom meeting this evening.
+</p>
+
+<b>Oct. 31, 1210:</b>
+
+<p>
+Consider a continuous-time Markov chain.  Let the matrix P(t)--let's
+call it the time-evolution matrix---show the probabilities of the various 
+states at time t, i.e. P(t)<sub>ij</sub> = P(X<sub>t</sub> = j | X<sub>0</sub> 
+= i) for all states i and j.  Here X<sub>t</sub> denotes the state at time t.  
+P(t) is an r x r matrix,
+where r is the number of states in the chain.
+</p>
+
+<p>
+We seek an analog of the discrete-time Markov chain formula
+</p>
+
+<p>
+P(X<sub>k</sub> = j | X<sub>0</sub> = i) = (P<sup>k</sup>)<sub>ij</sub>
+</p>
+
+<p>
+(slight abuse of notation; P() on the left means "probability of" while
+on the right, P is the transition matrix).
+</p>
+
+<p>
+First, consider the case of a Poisson process Y<sub>t</sub>, so that the 
+states are 0,1,2,...  Here Y<sub>t</sub> = k means there have been k events, 
+e.g. k lightbulb burnouts or k customer arrivals, by time t.
+</p>
+
+<p>
+P(X<sub>t</sub> = 0) =
+e<sup>-&lambda; t</sup> / 0! =
+e<sup>-&lambda; t</sup>   (Eqn. A)
+</p>
+
+<p>
+Recall from calculus that, for x close to some point x<sub>0</sub>,
+</p>
+
+<p>
+f(x) &approx;f(x<sub>0</sub>) + (x - x<sub>0</sub>)f'(x<sub>0</sub>)
+</p>
+
+<p>
+where ' indicates derivative.
+</p>
+
+<p>
+So for small t we have
+</p>
+
+<p>
+P(X<sub>t</sub> = 0) &approx; 1 - &lambda; t
+</p>
+
+<p>
+since the derivative of Eqn. (A) is - &lambda; t.
+</p>
+
+<p>
+A more sophisticated but similar argument for our general Markov chain
+shows that (P now means the "time evolution matrix" from above)
+</p>
+
+<p>
+P'(t) &approx; P(t) Q
+</p>
+
+<p>
+where Q is the infinitesimal generator of the process, and again ' means
+derivative (not transpose).
+</p>
+
+<p>
+Now, ignoring the fact that matrix "division" takes the form of
+multiplying by matrix inverse, we have, again formally, 
+</p>
+
+<p>
+"P'(t) / P(t)" = Q
+</p>
+
+<p>
+Recalling that d/dx ln(x) = 1/x and again formally, we integrate both
+sides of this equation to give
+</p>
+
+<p>
+ln[P(t)] = tQ
+</p>
+
+<p>
+and then
+</p>
+
+<p>
+P(t) = exp(tQ)
+</p>
+
+<p>
+Here we have the "exponential" of a matrix.  What would that even mean?
+</p>
+
+<p>
+Well, using the standard Taylor series, 
+</p>
+
+<p>
+exp(x) = 1 + x/1! + x<sup>2</sup> / 2! + x<sup>3</sup> / 3! + ...
+</p>
+
+<p>
+we then have, again formally,
+</p>
+
+<p>
+P(t) = I + tQ + (tQ)^2 /2 + (tQ)<sup>3</sup> / 6 + ...
+</p>
+
+<p>
+All this can be done with careful math, but the above is the intuition,
+and we now have our continuous analysis of the discrete time
+P<sup>k</sup>.
+</p>
+
+<b>Oct. 31, 1110:</b>
+
+<p>
+Someone pointed out after class a couple of errors in the diagram I drew
+for the Machine Repair problem.  I'll post a correction later today.
+</p>
+
+<p>
+And in walking back to my office after class, I realized I was missing a
+"t" in the "matrix exponentiation" example.  I'll post a correction on
+this too.
+</p>
+
+<b>Oct. 30, 2300:</b>
+
+<p>
+Problem A of 
+<a href="Assignments/TermProject.html">our term project</a> is ready.
+It is rather open-ended, but feel free to run your plans by me if you'd
+like some early feedback.
+</p>
+
+<b>Oct. 30, 1940:</b>
+
+<p>
+My blog post of Oct. 28, 1625 is now ready for public consumption.
+Please do a careful read, and let me know if you have any questions.
+</p>
+
+<b>Oct. 30, 1910:</b>
+
+<b>Oct. 30, 1910:</b>
+
+<p>
+The term project specs file is not ready yet, even in part.  I hope to
+have some of it ready later this evening.
+</p>
+
+<b>Oct. 30, 1720:</b>
+
+<p>
+I started composing Hwk 3, the last part of which was to be the first
+part of your term project.  However, we are about to enter November, and
+I always find that that month goes more quickly than I plan for. :-)  It
+is one day shorter than most months, and the Thanksgiving holiday always
+makes scheduling difficult in multiple ways.
+</p>
+
+<p>
+So, I've decided to simply have a slightly larger Term Project and skip
+Hwk 3.  I will be posting it in the next few days.  
+</p>
+
+<p>
+Tentatively, I plan to have the project due at the start of Week 10,
+and then conduct have interactive grading during that week.
+</p>
+
+<b>Oct. 29, 1020:</b>
+
+<p>
+Typo in Eqn. (9.33).  Upper value of the range of summation should be
+g-2, not g-1.
+</p>
+
+<b>Oct. 29, 0945:</b>
+
+<p>
+My blog post of Oct. 28, 1625 is still a work in progress, but ready to
+read.  I'll be adding a picture of a specific example, so it is still
+not quite done, but I recommend that you read it now and then again
+after I add the picture.
+</p>
+
+<p>
+TBH, this is a pretty tough concept.  But with patience plus the added
+picture, I think you'll find that it really cements your understanding
+of continuous-time Markov chains.
+</p>
+
+<b>Oct. 28, 2110:</b>
+
+<p>
+Please note my post of today, 1625, is still a work in progress!  Don't
+read it yet.
+</p>
+
+<b>Oct. 28, 1625:</b>
+
+<p>
+The <i>Method of Stages</i> is a technique that can be used to
+circumvent the requirement that holding times in continuous-time Markov
+chains be exponentially distributed.  The idea is actually rather
+simple.
+</p>
+
+<p>
+Say we have a chain, C<sub>orig</sub> which is non-Markovian in
+continuous time but <i>is</i> Markovian in discrete time.  The latter
+means that when a jump is made out of a state, it picks the new
+state in a memoryless manner.  (BTW, the path taken at the jumps is
+called the <i>embedded chain</i>.)  We will create a new chain,
+C<sub>new</sub>, that <i>is</i> Markovian in continuous time,
+and works approximately the same as C<sub>orig</sub>.  We will do this
+by what the original creators of this idea called "fictional" states.
+</p>
+
+<p>
+Let S be the holding time in a state m in C<sub>orig</sub>.
+We will first consider the case in which S is a constant w, i.e. P(S = w)
+= 1.
+</p>
+
+<p>
+Recall that the distribution of a sum Y of v iid exponential random variables 
+is called <i>Erlang</i>.  Denote the common "&lambda;" value for those
+random variables by l.  Then EY = v/l and Var(Y) = v/l<sup>2</sup>.
+The <i>coefficient of variation</i> of Y, is defined to be
+sqrt(Var(Y)) / EY = 1 / sqrt(v).  In other words, for large v, Y will be
+pretty close to constant, around the point v/l, its mean.  We can choose 
+l and v so that v/l is near w, with v large enough so that the spread of
+Y around w is small.  
+</p>
+
+<p>
+In other words, if S is constant, we can approximate it as the sum of
+v exponential random variables.  Let's call them
+R<sub>1</sub>,...,R<sub>v</sub>.  So we think of "states" m1,m2,...,mv,
+which we go through sequentially, then leave for some other state that
+is analogous to one in C<sub>orig</sub>.  Let's refer to this new chain
+as C<sub>new</sub>.  Thene
+</p>
+
+<p>
+
+<li> C<sub>new</sub> works approximately the same as C<sub>origi</sub>.
+</li> </p>
+
+<li> C<sub>new</sub> is Markovian!
+
+</p>
+
+<p>
+Here is an example.  
+</p>
+
+<p>
+State 1 in C<sub>orig</sub> is now states 11, 12 and 13 in
+C<sub>new</sub>.  A jump from some other state j that would go to 
+this state 1 in C<sub>orig</sub> would now go to state 11, then to 12
+and 13, then out to another state.  For the sake of simplicity, we 
+have v =3 in the picture, but it may need to be much larger.
+</p>
+
+<p>
+Now consider the case in which the holding time S at a state, say state
+i, in C<sub>orig</sub> is not constant, but takes on just two values, say 0.4
+and 1.7 for concreteness, with probability 0.35 and 0.65 respectively.
+We would replace state i by two "branches" of states 
+i11, i12,..., i1v<sub>1</sub> and i21, i22,..., i2v<sub>2</sub>.
+A jump from some other state j would go to i11 with probability 0.35 or
+to i21 with probability 0.65.
+</p>
+
+<p>
+Going one step further, any random variable can be approximated by its
+quantiles.  We could, say, approximate S by its deciles, say its 10th,
+20th, 30th,..., and 90th percentiles.  State i would now have 9
+branches, ist, u = 1,2,...,9 and t = 1,2,...,v, with the probability of
+entering any branch being 1/9.
+</p>
+
+<p>
+All this comes at the expense of having a lot more states, which may
+result in computational issues, but at least we can use Markov chain
+methods on non-Markovian processes.
+</p>
+
+
+<b>Oct. 28, 1315:</b>
+
+<p>
+Well, here is an interesting turn of events. :-)
+</p>
+
+<p>
+Today in class I mentioned the Method of Stages.  I hadn't planned to
+discuss it, but in emphasizing that the distributions in the Machine
+Repair Model needed to be exponential, I suddenly thought, "Well, I
+ought to tell them that there is an alternative," so I brought it up.
+</p>
+
+<p>
+And then, after class, I thought, "Hey, this is a good topic for their
+term project."  And indeed it is.
+</p>
+
+<p>
+So, later today, I will post to the blog a more detailed 
+explanation of this method.  However, it will not be in any of the
+quizzes.
+</p>
+
+<b>Oct. 28, 0930:</b>
+
+<p>
+Earlier I had mentioned here that we will hold Quiz 3 in Nov. 5.  Of
+course, I meant Friday, Nov. 4.  Note that I will be out of town, so Jay
+will conduct the quiz.
+</p>
+
+<p>
+Jay will set the turn-in time for the quiz at 10:55, at which time he
+will close the server.  Please note that you must 
+submit all your work before that time!  Also, keep in mind that each
+submission for a given problem overwrites the last one, so there is no
+harm in frequently submitting your work during the quiz; I highly
+recommend that you do this.
+</p>
+
+<b>Oct. 27, 2300:</b>
+
+<p>
+I have begun writing the specs for Hwk III.  It will have at least one
+more problem, and I may improve some of the phrasing in Problems 1 and
+2, but basically those two are ready, if you want to get a head start
+on Hwk III.
+</p>
+
+<b>Oct. 27, 1355:</b>
+
+<p>
+We will have Quiz 3 on Friday, Nov. 4.  I will be out of town, and Jay
+will administer the quiz.  Coverage:
+</p>
+
+<UL>
+
+<li> Exponential distribution family.
+</li> </p> 
+
+<li> Computer Worm Model.
+</li> </p> 
+
+<li> Bus Paradox and length-biased sampling.
+</li> </p>
+
+<li> Continuous-time Markov chains.
+</li> </p> 
+
+</UL>
+
+
+<b>Oct. 26, 1010:</b>
+
+<p>
+Sorry, no class today.
+</p>
+
+<b>Oct. 23, 1305:</b>
+
+<p>
+Here is a handy trick that may come in useful in our Term Project:
+</p>
+
+<pre>
+> ls()
+ [1] "bkd"       "db1"       "dba"       "dbb"       "dbcurr"    "dbl"      
+ [7] "dbsrci"    "dsc"       "evalr"     "gtd"       "ksList"    "ksProto"  
+[13] "lsp"       "lst"       "odf"       "pr2file"   "print.ksr" "qeml"     
+[19] "reloadPkg" "rt"        "srcname"   "sstd"      "upd"      
+> eval(parse(text='ls()'))
+ [1] "bkd"       "db1"       "dba"       "dbb"       "dbcurr"    "dbl"      
+ [7] "dbsrci"    "dsc"       "evalr"     "gtd"       "ksList"    "ksProto"  
+[13] "lsp"       "lst"       "odf"       "pr2file"   "print.ksr" "qeml"     
+[19] "reloadPkg" "rt"        "srcname"   "sstd"      "upd"     
+</pre>
+
+<p>
+Here I put a command (ie, a function call) into a string, then executed that
+string.  In the example here, there would be no point in doing this, but
+the ability to do so programmatically often is very useful.  One builds
+up a command in string from from, say, user-input variables, then 
+executes it.
+</p>
+
+<b>Oct. 20, 2310:</b>
+
+<p>
+I just e-mailed out the Quiz 2 grades.  
+The results were generally good, very nice to see.
+Please see the solutions in the <b>Exams/</b> directory on our Web site.
+</p>
+
+<p>
+I must repeat the importance of using your official UCD e-mail address
+on all your work, as my records are indexed that way.  I just noticed
+that in this quiz, someone gave their e-mail address as being at
+xyz.edu!
+</p>
+
+<b>Oct. 20, 1720:</b>
+
+<p>
+Except for one case of make-up grading, I am finished, and will send you
+your grades probably tomorrow.  Overall, I was pleased with how you did;
+almost everyone did well.
+</p>
+
+<p>
+I will be grading your Quiz 2 this evening.
+</p>
+
+<b>Oct. 19, 1955:</b>
+
+<p>
+The prblem statement for Problem 4 in the homework stipulated that you
+use the Law of Total Variance (LTV).  But it apears that some students are
+still having difficulty with the material on p.128 of our textbook, so I
+will remove the LTV requirement.  (You can use LTV for Extra Credit; if
+so, please notify me.)
+</p>
+
+<p>
+Note that Eqn. (6.38) is the same as
+</p>
+
+<pre>
+ET<sub>ij</sub> = E[ E(T<sub>ij</sub> | U)]
+</pre>
+
+<p>
+Adapt this and then use the formula
+Var(X) = E(X<sup>2</sup>) - (EX)<sup>2</sup>.
+</p>
+
+<b>Oct. 18, 1915:</b>
+
+<p>
+In the 1 hour it took me to drive home today, I composed an 
+entire draft of Quiz 3.  (In my mind, of course, not typing. :-) )  
+<b>THIS DRAFT WAS HEAVILY WEIGHTED TO ISSUES RELATED TO THE 
+AUTOCORRELATION PROBLEM IN THE HOMEWORK.</b>  So, make sure you do an 
+extra careful job on this particular problem.  And, note my related 
+comment about simulation for that problem in my blog 
+post of Oct. 17, 2110.
+</p>
+
+<b>Oct. 18, 1310:</b>
+
+<p>
+Regarding autocorrelation:
+</p>
+
+<p>
+In composing this problem, I was assuming that (a) most students would
+not have prior exposure to the concept of autocorrelation, but that (b)
+all students would have prior exposure to correlation.  I think (b)
+turned out not to be true, and since even the Wikipedia is rather
+inconsistent (see below), I am writing this blog post.
+</p>
+
+<p>
+Note:
+</p>
+
+<UL>
+
+<li> The prefix auto- means "self."  So, the autocorrelation of a
+stochastic process X<sub>0,</sub> X<sub>1</sub>, X<sub>2</sub>, X<sub>3</sub>, 
+...  is the correlation of the process with itself, &rho;(X<sub>i</sub>,
+X<sub>j</sub>).  (&rho; is a standard symbol for correlation, just like
+&mu; is a standard symbol for a mean and &sigma; is a standard symbol for 
+standard deviation.)
+</li> </p> 
+
+<li> What, then, is correlation?  Say we have random variables U and V.
+Then their correlation is defined to be
+</p>
+
+<pre>
+&rho;(U,V) = Cov(U,V) / (&sigma;<sub>U</sub> &sigma;<sub>V</sub>)
+= (&mu;<sub>UV</sub> - &mu;<sub>U</sub> &mu;<sub>V</sub>) / (&sigma;<sub>U</sub> &sigma;<sub>V</sub>)
+</pre>
+
+<p>
+Note that correlation takes values only in [-1,1].
+</p>
+
+<p>
+By the way, this is called Pearson correlation, named after the inventor
+long, long ago.
+</p>
+</li> </p> 
+
+<li> The autocorrelation of the X<sub>i</sub> above is then
+</p>
+
+<pre>
+(E[X<sub>i</sub> X<sub>i+k</sub>] - E[X<sub>i</sub>] E[X<sub>i+k</sub>]) / sqrt(Var(X<sub>i</sub>) Var(X<sub>i+k</sub>))
+</pre>
+</li> </p>
+
+<li> If that stochastic process is <i>stationary</i>, i.e. X<sub>0</sub>
+has a stationary distribution for the process, then the above simplifies to
+</p>
+
+<pre>
+(E[X<sub>0</sub> X<sub>k</sub>] - E[X<sub>0</sub>]<sup>2</sup>) / Var(X<sub>0</sub>))
+
+</pre>
+
+<li> In many applications of data, it is common to <i>standardize</i>
+(or <i>normalize</i>) each variable, meaning to subtract its mean and 
+divide by its standard deviation.  This makes each variable have mean 0 
+and variance 1, so that the variables are more comparable, and so there
+are fewer numerical stability problems.  Most ML people, for example,
+standardize their features before performing <i>deep learning</i>
+analysis.
+</li> </p> 
+
+<li> If we do standardize the data, then the formula for 
+correlation between U and V simplifies to
+</p>
+
+<pre>
+&mu;<sub>UV</sub>
+</pre>
+
+<p>
+Same correlation we got before, note.  Nothing has changed other than a
+shortcut to the same computation.
+</p>
+
+<p>
+The autocorrelation of the stochastic process reduces to
+</p>
+
+<pre>
+E[X<sub>0</sub> X<sub>k</sub>]
+</pre>
+</li> </p> 
+
+<li> 
+<i>But this assumes the data has already been standardized.</i>  The
+autocorrelation will NOT be restricted to [-1,1] unless
+we standardize the data.
+</p>
+
+<p>
+There are some analysts who use the simplified form 
+E[X<sub>0</sub> X<sub>k</sub>] even <i>without standarization</i>.
+This is fine as long as the analyst is aware of this and will be able to
+interpret the results, which can be any number in (-&infin;,&infin;).
+</p>
+
+</li> </p> 
+
+<li> And even if the analyst is aware of this point, if his/her usage is
+not private, then the consumers of the analysis may be seriously misled.
+Note that Wikipedia, which is generally pretty good on
+statistical/machine learning matters, <i>is inconsisent</i> here.
+The <a href="https://en.wikipedia.org/wiki/Autocorrelation">
+entry on autocorrelation</a> says that the autocorrelation for a
+stochastic process "is the Pearson correlation between values of the 
+process at different times," yet the link it provides does standardize
+while the autocorrelation entry does not.
+</li> </p>
+
+<li> So, "Confusion reigns!," at least among the unwary.
+</li> </p> 
+
+</UL>
+
+<b>Oct. 17, 2110:</b>
+
+<p>
+Here are some check values for Problem 2, and some advice.
+</p>
+
+<UL>
+
+<li> I wrote this code to generate test transition matrices:
+</p>
+
+<pre>
+test <- function(m)  # random walk on 1:m
+{
+   P <- matrix(0,nrow=m,ncol=m)
+   P[1,1] <- 0.5
+   P[m,m] <- 0.5
+   for (i in 1:m) {
+      if (i < m) P[i,i+1] <- 0.5
+      if (i > 1) P[i,i-1] <- 0.5
+   }
+   P
+}
+</pre>
+</li> </p>
+
+<li> I ran my code on a few values:
+</p>
+
+<pre>
+> P20 <- test(20)
+> MCautocor(5,P20)
+[1] 0.9337406
+> MCautocor(9,P20)
+[1] 0.8862488
+> MCautocor(15,P20)
+[1] 0.8208981
+</pre>
+
+<p>
+Note that with larger <b>k</b>, the correlation goes down.  Make sure this
+makes intuitive sense to you.
+</li> </p> 
+
+<li> As with many of our homework problems, you can check your results 
+here via simulation, which I did.  
+</p>
+
+<p>
+Before continuing, I wish to urge you to write the simulation.  In doing
+so, you'll be able to reuse some of your code in the term project.
+</p>
+
+<p>
+My call form for the simulation was 
+</p>
+
+<pre>
+sim(k,P,nReps)
+</pre>
+
+<li> 
+<p>
+Within <b>sim()</b> I have a function
+</p>
+
+<pre>
+oneSamplePath <- function()  
+{
+...
+}
+</pre>
+
+<p>
+Note that since this function is defined within <b>sim()</b>, the local
+variables (including the arguments) of <b>sim()</b> are global to this
+inner function.
+</p>
+
+<p>
+In stochastic process terminology, a <i>sample path</i> simply means
+taking a "ride" on a Markov chain one time, for however many time
+periods we like.  So, with <b>P20</b> as above, I might start, say, at
+3, then go to 2, then 3 again, then 4, then 5; this would be a sample
+path of 5 time periods.  I had a call to <b>oneSamplePath()</b> to go
+through <b>k+1</b> periods.  
+</p>
+
+<p>
+I set up <b>sim()</b> to generate <b>nReps</b> sample paths:
+</p>
+
+<pre>
+paths <- replicate(nReps,oneSamplePath())
+</pre>
+
+<p>
+The <b>replicate()</b> function in R does what it says, executing the
+code the requested number of times.  So my call
+</p>
+
+<pre>
+sim(8,P20,10000)
+</pre>
+
+<p>
+generated 10000 sample paths.  So I had 10000 X0s, 10000 X1s etc.,
+through 10000 X8's.  Now I can find the correlation between the Xi, in
+the final line of <b>sm()</b>, calling R's correlation function:
+</p>
+
+<pre>
+cor(t(paths))
+</pre>
+
+</UL>
+
+<b>Oct. 17, 1310:</b>
+
+<p>
+You may find it helpful to re-review the review in Chapter 10,
+pp.191-195.  These basic facts will arise a lot.
+</p>
+
+<b>Oct. 17, 1240:</b>
+
+<p>
+Here is a crisper version of the derivation I rushed through at the end
+of class today:
+</p>
+
+<p>
+After Eqn. (9.18), write
+</p>
+
+<p>
+R'(0) = R'(u) / R(u) = d/du [ln(R(u)]
+</p>
+
+<p>
+since d/dx ln(x) = 1/x.  For convenience, write c = R'(0), so we have
+</p>
+
+<p>
+c =  d/du [ln(R(u)]
+</p>
+
+<p>
+Integrating both sides, we get
+</p>
+
+<p>
+cu = ln[R(u)] + b
+</p>
+
+<p>
+for some constant b.  So,
+</p>
+
+<p>
+R(u) = exp(cu) exp(-b)
+</p>
+
+<p>
+So the density of V is
+</p>
+
+<p>
+f<sub>V</sub>(u) = d/du [1 - R(u)] =  -c exp(cu) exp(-b)
+</p>
+
+<p>
+A density must be nonnegative, so we see c < 0.  A density also must
+integrate to 1.0.  This forces exp(-b) to be 1. 
+</p>
+
+<p>
+So, the memoryless property for a continuous random variable forces the
+variable to have an exponential distribution.
+</p>
+
+<b>Oct. 16, 2305:</b>
+
+<p>
+In my post of Oct. 9, 1000, the symbol <b>p</b> in state1xmit() should be 
+<b>p1</b>.  Sorry for the typo.
+</p>
+
+<p>
+This is "Computers never work" in reverse!
+I had tested my code before making the blog post,
+and it ran properly in spite of the typo--even though it shouldn't have
+run.  Why?  I had originally named the quantity 'p', and the old version
+was still there.
+</p>
+
+<b>Oct. 16, 1410:</b>
+
+<p>
+The range of indices in Eqn. (6.42) should be 1 &le; i &le; n-1.
+Concerning the code that follows, writing out the equations by hand for
+the case n = 3 should help you see what the code is doing.  Please
+keep in mind that this equation and the associated code is only 
+for the special case of solving for p<sub>in</sub>, not the general 
+p<sub>ij</sub>.
+</p>
+
+<b>Oct. 15, 1410:</b>
+
+<p>
+I'm fine today, and tested negative for Covid.  See you in class Monday.
+</p>
+
+<b>Oct. 14, 0430:</b>
+
+<p>
+We will not have class on 10/14.  I got my Covid booster yesterday, and
+seem to be experiencing a reaction, with a mild fever.
+</p>
+
+<p>
+We may have to hold class and interactive grading on Zoom next week.
+</p>
+
+<b>Oct. 13, 2045:</b>
+
+<p>
+A student asked me about Eqn. (6.41).  Shouldn't that "1 +" be "p_{ij}
++", he asked.
+</p>
+
+<p>
+Actually, that 1 is correct.  Look at (6.38), drawing upon (6.39) and
+(6.40).  Break down the sum in (6.38) from sum_k to 
+</p>
+
+<p>
+# call this Eqn. A
+sum_{k != j) p_{ik} stuff +
+sum_{k = j) p_{ik} stuff +
+</p>
+
+<p>
+where "stuff" means E(T_{ij} | U = k).
+</p>
+
+<p>
+That second term in (A) is of course just p_{ij} stuff.  Then (6.38) becomes 
+</p>
+
+<p>
+# call this Eqn. B
+sum_{k != j) p_{ik} stuff +
+p_{ij} stuff 
+</p>
+
+<p>
+And "stuff" is given by (6.39) and (6.40).  So (B) becomes
+</p>
+
+<p>
+# call this Eqn. C
+sum_{k != j) p_{ik} (1 + E(T_{kj}) +
+p_{ij} 1 
+</p>
+
+<p>
+Part of that first term in (C) is
+</p>
+
+<p>
+
+sum_{k != j) p_{ik} 1
+</p>
+
+<p>
+i.e. all the p_{ik} other than p_{ij}, but the latter is picked up in
+the second term in (c).  Together, their sum is
+sum_{all k) p_{ik} = 1, which is the 1 in (6.41).
+</p>
+
+
+<b>Oct. 13, 1930:</b>
+
+<p>
+I've clarified Problem 3.
+</p>
+
+<b>Oct. 11, 2050:</b>
+
+<p>
+Quiz news:
+</p>
+
+<UL>
+
+<li> Remember, Quiz 2 wil be held on Wednesday, Oct. 19.  It will cover
+the material on discrete-time Markov chains; exponential distributions and
+continuous time Markov chains will not be covered on Quiz 2.
+</li> </p> 
+
+<li> As with Quiz 1, there should be "no surprises"; you will not be
+shocked by any of the questions.
+</li> </p> 
+
+<li> Quiz 3 will be held on Friday, Nov. 4.  The Nov. 5 date I
+mentioned in an earler blog post was in error, though my statement that
+I will not be present for that quiz is still true.  Quiz 4, the Group
+Quiz, will be held on Dec. 2.
+</li> </p>
+
+<li> It is expected that, on Quizzes 2 and onward, you are adept at
+using OMSI.  <b>No paper quizzes will be accepted.</b>
+</li> </p> 
+
+</UL>
+
+<b>Oct. 11, 1115:</b>
+
+<p>
+Following up on my post of Oct. 10, 1255, use braces for grouping, just
+as in writing .tex files.  E.g. write
+</p>
+
+<pre>
+p_{ij} 
+</pre>
+
+<p>
+instead of
+</p>
+
+<pre>
+p_ij 
+</pre>
+
+<b>Oct. 10, 1255:</b>
+
+<p>
+Occasionally I will ask you in a quiz question to supply a mathematical
+expression, in a NON-coding question.  Please use ^ for exponentiation,
+_ for subscripts, and juxtapostion for multiplication (NOT *).  Denote
+transcendental functions for their R names, and green letters by their
+names.
+</p>
+
+<p>
+For instance, the normal/Gaussian density, 0 mean and sd 1:
+</p>
+
+<pre>
+1/sqrt(2 pi) exp(-0.5(t^2)) 
+</pre>
+
+<b>Oct. 9, 1000:</b>
+
+<p>
+Cally pointed out that the caculated pi vector in p.124 are incorrect.
+</p>
+
+<pre>
+> findpi1(transmat)
+[1] 0.3682030 0.4497337 0.1820633
+</pre>
+
+<p>
+Since Eqn. (6.23) is rather complicated, I decided to check via
+simulation.  Here is the code below; make sure you understand both the
+model and the R code.
+</p>
+
+<pre>
+state <- 0
+
+sim <- function(p1,q1,n)  # n = number of simulated epochs
+{
+   p1 <<- p1
+   q1 <<- q1
+   pi <- rep(0,3)
+   for (i in 1:n) {
+      if (state == 0) state0next()
+      else if (state == 1) state1next()
+      else state2next()
+      pi[state+1] <- pi[state+1] + 1
+   }
+   pi/n
+}
+
+# the functions state0next(), state1next() and state2next() simulate the
+# actions at states 0, 1 and 2
+
+state0next <- function()
+{  
+   state <<- rbinom(1,2,q1)
+   if (state == 2) state2xmit()
+   else if (state == 1) state1xmit()
+}
+                   
+state1next <- function() 
+{                  
+   if (runif(1) < q1) {
+      state <<- 2  
+      state2xmit() 
+   } else state1xmit()
+}
+
+state2next <- function()
+{ 
+   state2xmit()
+}
+
+# the functions state0xmit(), state1xmit() and state2xmit() simulate the
+# actions during the attempted transmission phase at states 0, 1 and 2
+
+state1xmit <- function() 
+{  
+   if (runif(1) < p) state <<- 0
+}
+
+state2xmit <- function()
+{
+  nTrySend <- rbinom(1,2,p1)
+  if (nTrySend == 1) state <<- 1
+}
+
+sim(0.4,0.3,1000000)
+
+</pre>
+
+<p>
+Note that I am storing 'state' as as global variable.  There are many
+people who consider globals, both in R and in general, to be "evil."
+I don't have this view; I think the use of globals can make code much
+clearer and easier to follow.  Note, though, that this meant I needed to
+use <<- instead of <-
+</p>
+
+<b>Oct. 8, 1220:</b>
+
+<p>
+Soon we will have interactive grading for Homework 1.  Please note:
+</p>
+
+<UL>
+
+<li> I will have Jay set up an app through which your group can sign up for a
+time slot.
+</li> </p> 
+
+<li> Please review the
+<a href="256Syllabus.html">course syllabus</a> regarding interactive
+grading.
+</li> </p> 
+
+<li> The mode is very informal; we just sit and talk.  Sometimes I will
+ask followup questions.  I may, for instance, ask you to explain your
+solution to Problem 2, and then ask you to elaborate on one of your
+remarks.
+</li> </p> 
+
+<li> You may find it helpful bring in your textbook and homework files
+(electronic form is fine), which you can check as you answer my
+questions.
+</li> </p> 
+
+<li> Make sure you have a good understanding of the "notebook" approach
+to defining P() and E().
+</li> </p> 
+
+</UL>
+
+<b>Oct. 6, 1820:</b>
+
+<p>
+Continuing with this morning's post on Problem 4, another approach would
+be to use row and column names on your matrix.  Here is how they work:
+</p>
+
+<pre>
+> m <- rbind(1:2,c(5,3))
+> m
+     [,1] [,2]
+[1,]    1    2
+[2,]    5    3
+> rownames(m)
+NULL
+> rownames(m) <- c('a','b')
+> rownames(m)
+> m
+  [,1] [,2]
+a    1    2
+b    5    3
+> colnames(m) <- c('c','d')
+> m
+  c d
+a 1 2
+b 5 3
+> m['a','d'] <- 3
+> m
+  c d
+a 1 3
+b 5 3
+</pre>
+
+<p>
+So, you might for instance keep everything for ET<sub>ij</sub> in a
+matrix rather than a vector, and set row and column names like '1,1',
+'1,2' etc.
+</p>
+
+<b>Oct. 6, 1805:</b>
+
+<p>
+Another exhortation to start Homework 2 early!
+</p>
+
+<p>
+As you saw, Quiz 1 largely consisted of problems similar to Homework 1.
+The same will be true for Quiz 2 and Homework 2, both in terms of math
+and R programming.  So, starting Homework 2 early is very wise.
+</p>
+
+<b>Oct. 6, 0915:</b>
+
+<p>
+In Problem 4 of the homework, you will be setting up systems of linear
+equations, which you can solve using the <b>solve()</b> function once
+you set up the proper matrix.  However, the latter action will be a bit
+of a challenge, as follows.
+</p>
+
+<p>
+In our texbook, we set up a matrix to find the &pi; vector.  The names
+of the rows of that matrix are 1,2,...,n, where n is the size of the
+state space of the Markov chain.  The same is true for the columns.
+But in Problem 4, the names of the rows--in your mind--will be 
+<i>pairs</i> of integers, and again the same for columsn.  Yet as far as
+R is concerned, the row and column names are single integers.  How can
+we deal with this?
+</p>
+
+<p>
+First, note that R uses <i>column-major order</i> to store matrices and
+arrays (the latter are "matrices" with more than 2 dimensions).  This
+comes from the old S language (R's "ancestor"), which was based on
+FORTRAN.  C/C++ uses row-major order.  No advantage to either over the
+other, but one must understand how it works.
+</p>
+
+<p>
+Consider the code
+</p>
+
+<pre>
+> u <- rbind(1:2,8:7))
+Error: unexpected ')' in "u <- rbind(1:2,8:7))"
+> u <- rbind(1:2,8:7)
+> u  
+     [,1] [,2]
+[1,]    1    2
+[2,]    8    7
+> v <- as.vector(u)                                           
+> v
+[1] 1 8 2 7
+</pre>
+
+<p>
+That matrix <b>u</b> consists of 4 numbers, stored column-by-column.
+For example, <b>u[1,2]</b> will be in the third memory word in the space 
+allocated to <b>u</b>.
+</p>
+
+<p>
+And of course one can go the opposite direction:
+<p>
+
+<pre>
+> w <- matrix(v,nrow=2,ncol=2,byrow=FALSE)
+> w
+     [,1] [,2]
+[1,]    1    2
+[2,]    8    7
+</pre>
+
+<p>
+(Setting <b>byrow=TRUE</b> would have resulted in filling <b>w</b>
+row-by-row rather than column-by-column.)
+</p>
+
+<p>
+
+The point is that, in creating your matrix <b>m</b> to represent your
+system of equations, you may find it convenient to use a similar storage
+scheme.
+
+</p>
+
+<b>Oct. 6, 0855:</b>
+
+<p>
+Homework 2 news:
+</p>
+
+<UL>
+
+<li> I will not be adding any more problems to this set.  
+(I will likely tweak the wording for clarity.
+And you already have sufficient knowledge to do all the problems.
+</li> </p> 
+
+<li> It is crucial that you <b>START THE HOMEWORK NOW.</b>  As I said
+yesterday in class, you should find this assignment easier than Homework
+1, but it still will require substantial time and thought.
+</li> </p> 
+
+<li> There will be more computational content to the course from this
+point onward.  The next blog post will show something that will probably
+be useful in Problem 4.
+</li> </p> 
+
+</UL>
+
+<b>Oct. 5, 1905:</b>
+
+<p>
+Announcements:
+</p>
+
+<UL>
+
+<li> I mentioned earlier that Jay would be setting up an office hour,
+for helping people with software issues.  It will be Tuesdays 3-4pm at
+Kemper 3106.
+</li> </p>
+
+<li> I mentioned today that there is a subtle timing issue in the simple
+ALOHA model.  This is set on p.11 of the full book.  A node that is idle
+at the beginning of a time slot will generate a new message with
+probability q, <i>at the beginning of the time slot</i>; a node that has
+something to send, including a newly-created message, will try to send,
+with probability p.
+</li> </p> 
+
+</UL>
+
+<b>Oct. 5, 0005:</b>
+
+<p>
+I have put a draft of Homework 2 on our Web page.
+</p>
+
+<b>Oct. 4, 1735:</b>
+
+<p>
+Various announcements:
+</p>
+
+
+<UL>
+
+<li> Jay will soon be announcing office hours.  These will be mainly for
+computer issues.  Hopefully all OMSI problems have been ironed out now,
+but we will be using other software packages which you will need to
+install on your machine.
+</li> </p> 
+
+<li> We will hold Quiz 2 on October 19, and Quiz 3 on November 5.  (BTW,
+I will not be presnt for the latter.)  Quiz 4 will be the Group Quiz, on
+the last day of lecture, Decembe 2 (I had earlier written December 9, in
+error); note that all members of your group must be present.
+</li> </p>
+
+<li> I will soon be posting Homework 2, also due October 19.  You will
+find that you already have enough background on Markov chains to do most
+of this homework, so please start early.
+</li> </p> 
+
+</UL>
+
+<b>Oct. 4, 0900:</b>
+
+<p>
+<i>Office hours:</i>
+</p>
+
+<p>
+As I mentioned in my Sept. 27, 1910 blog post, I will not be able to
+meet my office hour tomorrow, due to a committee meeting.  I will be
+available after class for brief questions.
+</p>
+
+<p>
+<i>E-mail addresses:</i>
+</p>
+
+<p>
+
+Please note that all of my records for a course are indexed by student
+e-mail address, specifically a student's official UCD address that
+appears in my class roster from the Registrar.  I have scripts similar
+to OMSI that I use to gather together a student's data when I assign
+course grades at the end of the quarter.  Thus it is important that my
+records for you use your official address.
+
+</p>
+
+<p>
+
+In your use of OMSI, make sure to use this address.  This is quite easy
+to check. As you know, each time I make a new blog post, I send you
+e-mail announcing it.  The address used for this e-mail is your official
+UCD address.
+
+</p>
+
+<p>
+If you submitted yesterday's quiz using some other address, please let
+me know so I can correct my records.
+</p>
+
+<b>Oct. 3, 2250:</b>
+
+<p>
+I've finished grading Quiz 1, those who submitted electronically.
+As noted, I hope to handle the paper submissions tomorrow.
+</p>
+
+<p>
+I was very pleased to see that most students did well on Problem 4.
+Some may have gotten caught up in minutiae in Problem 3, but if you get
+Problem 4 right, you really do have a good grasp of the essence of the
+Law of Total Expectation.
+</p>
+
+<p>
+Solutions are posted
+<a href="Exams/">here </a>.
+</p>
+
+<b>Oct. 3, 1945:</b>
+
+<p>
+One of my slogans in the class has been "Computers never work!" :-)
+</p>
+
+<p>
+
+We had four people turn in solutions on paper, apparently because they
+could not get OMSI to work.  Presumably they did an OMSI dry run on
+their own machines, not with Jay's dry run server that he had running last week.
+(If you had some other problem, please let me know.)  They then had
+problems with the VPN.
+
+</p>
+
+<p>
+
+This once again shows that any computer system, hardware or software,
+<b>must be tested in the same setting as one will have in real use.</b>
+Things can still go wrong, of course, but one must do one's best to
+minimize those possibilities.
+
+</p>
+
+<p>
+
+Jay, please set up a server again, so that those who had problems can
+test their use of OMSI under realistic conditions.  
+
+</p>
+
+<p>
+Please remember that I also use OMSI to do the grading of your quizzes.
+OMSI presents me with a student solution, and if it is R code, OMSI runs
+it for me.  OMSI automatically keeps records for me, etc.  So, I should
+be able to grade everyone this evening who submitted via OMSI.  I'll try
+to get to the paper copies tomorrow.
+</p>
+
+<p>
+Quiz notes:
+</p>
+
+<UL>
+
+<li> 
+In caculating your average quiz grade at the end
+of the course, <b>I will drop your lowest grade.</b>  Remember too that
+the Group Quiz on the last day of class, Dec. 2, does count as a quiz,
+just like the others.
+</li> </p> 
+
+<li> 
+We will have our next quiz on about Oct. 20.
+</li> </p>
+
+<li> 
+The paper copies of the quizzes are for emergencies.  They are not meant
+for submission of your solutions on paper.  If for some reason you have
+a problem with OMSI in the future--please do your best to avoid
+this--<b>you still must do the quiz on your laptops.</b>  Submit your
+solutions files by e-mail, one per quiz problem, plain ASCII text.
+</li> </p> 
+
+</UL>
+
+<b>Oct. 2, 1445:</b>
+
+<p>
+Jay and I have now both done thorough testing of Lan's 
+<a href="https://github.com/jianglanni/omsi.git">new version of OMSI,</a> 
+which allows the test taker to specify multiple PDF file to view via
+OMSI.
+</p>
+
+<p>
+The server is unchanged, and the changes to the client are pretty small.
+Run by typing
+</p>
+
+<pre>
+python OmsiGui.py pcWhatever.cs.ucdavis.edu PortNum YourEmailAddr QuizNum PDFOpenCmd1 PDFOpenCmd2 etc.
+</pre>
+
+<p>
+As I am fond of saying, "Computers never work."  So, <b>JUST IN
+CASE</b>, keep a copy of the old OMSI on your machine if an "emergency"
+arises.
+</p>
+
+<b>Oct. 1, 2105:</b>
+
+<p>
+Some tips on Problem 3:
+</p>
+
+<UL>
+
+<li> Generate U and V.  It's up to you, but keep in mind two points: (a)
+As explained in the problem specs, it's best to have them discrete.  (b)
+The problem becomes a little too simple if U and V are independent,
+since then E(V|U) reduces to the constant EV.  One suggestion would be
+to generate independent random variables A, B and C, and then take
+U = A + C and V = B + C.  BTW, you need not stick to famous
+distributions; a random variable which, say, takes on the values 1, 2
+and 9 with probabilities 0.5, 0.25 and 0.25, would be fine.
+</li> </p>
+
+<li> Set Y = U + V + W, where W is independent of U and V, and has mean
+0.  Then E(Y | U,V) = U + V.
+</li> </p>
+
+<li> You then must evaluate the expectations.  To do so, it is crucial
+that you understand what they mean, and once again, IMO that is better
+done via a the long-run average notion.  For random variables R and S,
+ES is the long-run average of S over infinitely many rows of the
+"notebook," while E(S | R = r) is the long-run average only among those
+notebook rows having R = r.  As noted, since P(R = r) = 0 for continuous
+R, it is best to use discrete random variables.  
+</li> </p> 
+
+</UL>
+
+<b>Sept. 30, 1445:</b>
+
+<p>
+Just to make it official:  Quiz 1 will be held this coming Monday.  Same
+coverage, i.e. it excludes Markov chains.
+</p>
+
+<p>
+Actually, the postponement will turn out to have two advantages:
+</p>
+
+<UL>
+
+<li> You will have finished more of Homework 1 by then, thus deepening
+your understanding of the concepts.
+</li> </p>
+
+<li>  If you have several PDF files that you would like to view from
+within OMSI, you may be able to use Lan's extension of OMSI.  I tested it
+a little yesterday, and it looks fine.  Jay is giving it a more thorough
+test now.  We'll let you know when we decide that it's ready, but if you
+are curious, it is
+<a href="https://github.com/jianglanni/omsi.git">here</a>.
+
+</UL>
+
+<b>Sept. 30, 1440:</b>
+
+<p>
+The footnote below Equation (6.9) says that a sufficient condition
+(<i>A is a sufficient condition for B</i> means A => B)
+for Equation (6.5) to hold is that the chain be aperiodic.
+A different sufficient condition is that all elements of the transition
+matrix P are > 0 (Perron-Frobenius Theorem).
+</p>
+
+<b>Sept. 29, 1955:</b>
+
+<p>
+Quiz news:
+</p>
+
+<UL>
+
+<li> As stated in class, the coverage of Quiz 1 will be the undergrad
+probability material, not Markov chains.
+</li> </p> 
+
+<li> Good news!  Today I blogged that it would be nice to extend OMSI to
+allow access to multiple PDFs, and suggested that maybe someone in the
+class might take this on.  Well, Lan Jiang did so!  I've tested it and
+it seems correct, but Jay will test it more thoroughly.  Too late for
+Quiz 1, but we'll use it starting with Quiz 2.
+</li> </p> 
+
+</UL>
+
+<b>Sept. 29, 1215:</b>
+
+<p>
+I've been asked a couple of times now about use of iPad notes in our
+quizzes.  A few points here:
+</p>
+
+<UL>
+
+<li> You can save your iPad notes to a PDF file, then append to your ECS
+256 textbook PDF.  OMSI enables viewing PDF file.
+</li> </p>
+
+<li> That OMSI restriction to just one PDF file is not meant to be
+restrictive.  It simply was easier to code having just one PDF.  If one
+of you would like to revise the OMSI code to allow multiple PDFs, that
+would be great.  (And of course you would be added to the list of
+authors.)  This should be fairly easy.
+</li> </p> 
+
+<li> Clearly, various features of OMSI were designed to prevent
+cheating, meaning electronic collaboration during the quizzes.  Sadly,
+this is a necessity.
+</li> </p> 
+
+<li> As I said in class, I <b>very strongly encourage</b> you to make a
+hard copy of the textbook, and annotate your hard copy during lectures
+and your reading at home.  Printing plus spiral binding should cost
+about $20, a small investment with a big payoff, IMO.
+</li> </p> 
+
+</UL>
+
+<b>Sept. 29, 1215:</b>
+
+<p>
+A few days ago, I added an extra office hour in order to accommodate
+students in STA 209.  However, I didn't realize that the change didn't
+fix the problem.  So, my new office hours will be:
+</p>
+
+<p>
+M 1-3, W 2-3
+</p>
+
+<b>Sept. 29, 0930:</b>
+
+<p>
+In running OMSI with the server on CSIF, make sure that you have set up
+the VPN.  Of course, you cannot connect without it.
+</p>
+
+<b>Sept. 28, 1930:</b>
+
+<p>
+If OMSI is giving you an error message referring to Tk, your machine may
+not have the latter.  Tk is what drives Python graphics.
+</p>
+
+<p>
+I would suggest you install Anaconda, a full Python
+package.  This will not only get you Tk, but also should avoid Python's
+notorious environment problems.  Be sure to configure your system's search
+path, so that when you type "python", the Anaconda Python will be the
+one to run. 
+</p>
+
+<p>
+Obviously, you need to get this resolved SOON.  Please contact Jay if
+you still have problems.
+</p>
+
+<b>Sept. 28, 1900:</b>
+
+<p>
+In today's lecture, I had hoped to elaborate on my "long-run frequency"
+definition probability, which is presented in Chapter 1 of the full PSB
+book, but I ran out of time.  As I've said, I take this 
+approach because I believe the usual set-theoretic treatments obscure
+the intuition.  I believe this alternative approach will help you, both
+on the current Problem 1d but also in various concepts that will arise
+in the course.
+</p>
+
+
+<p>
+I like to use a "notebook" metaphor.  For instance, consider tossing a
+coin, and ask what P(heads) = 0.5 means.  We toss a coin once, and
+record H or T on line 1 of the notebook.  We toss the coin again, and 
+record H or T on line 2, etc.  P(heads) = 0.5 means that if we look at
+infinitely many lines in the notebook, the long-run proportion of heads
+is 0.5.
+</p>
+
+<p>
+
+Say X<sub>1</sub> and X<sub>2</sub> are independent and each have an
+exponential distribution with &lambda; = 1.  Define a new random
+variable T = min(X<sub>1</sub>, X<sub>2</sub>).  What does the notebook
+look like here?  There will be columns labeled X1, X2 and T.  The first
+four lines, say, might look like this:
+
+</p>
+
+<pre>
+
+line  X1  X2  T
+1     0.3 1.2 0.3
+2     6.8 1.3 1.3
+3     0.5 0.2 0.2
+4     8.4 9.9 8.4
+...
+
+</pre>
+
+<p>
+The long-run average on the X1 column will be 1/&lambda; = 1.  The same
+will be true for the X2 column, but NOT for the T column; the latter
+will be something less than 1.0.  In fact, in our analysis of continuous
+Markov chains later in the course, it will be seen that ET = 0.5.  Don't
+worry now about why this is true.  Instead, the main point is that one
+cannot say, "T is always equal to one of the X<sub>i</sub>, and they
+have mean 1, so T must also have mean 1."  Not true.
+</p>
+
+<b>Sept. 28, 1610:</b>
+
+<p>
+Correction:  I misstated Problem 1d.  Sorry, fixed now, and due date
+pushed back.
+</p>
+
+<b>Sept. 28, 1130:</b>
+
+<p>
+Correction:  In defining random walk with reflecting barriers today, I
+wrote p_-10,-9 = 1/2.  I should have written 1 rather than 1/2.  The
+latter would make the chain aperiodic, and I was trying to give an
+example of a periodic chain.
+</p>
+
+<b>Sept. 28, 0920:</b>
+
+<p>
+If you wish to avoid doing the integration in Problem 2 by hand, you can
+use <i>symbolic math</i> packages (also known as <i>computer algebra
+systems (CAS))</i>, such as <b>Ryacas</b> and
+<b>caracas</b>.  For example:
+</p>
+
+<pre>
+install.packages('Ryacas') 
+library('Ryacas') 
+yac_expr("Integrate(x)  Exp(-(lamb*x))") 
+</pre>
+
+<p>
+or
+</p>
+
+<pre>
+install.packages('caracas') 
+library(caracas)
+sympy <- get_sympy()
+x <- sympy$symbols('x')
+f <- "exp(-lamb*x)"
+sympy$integrate(f, x)
+</pre>
+
+<b>Sept. 27, 1910:</b>
+
+<p>
+Regading office hours:
+</p>
+
+<UL>
+
+<li> A couple of people have a conflict with my W 2-3 hour, so I will
+extend the Monday ones to 2-4.
+</li> </p>
+
+<li> I just remembered that I will occasionally miss the W hour, due to
+meetings of the Cognitive Science Program Committee, of which I am a
+member.  I will miss the Oct. 5 OH, and one or two others; will notify
+everyone well in advance.
+</li> </p> 
+
+<li> Of course, I am always available by e-mail, including evenings and
+weekends, but it is much better live and in-person.
+</li> </p> 
+
+</UL>
+
+<b>Sept. 27, 1505:</b>
+
+<p>
+A quick note regarding a subtlety in R.  Consider this code, in which we
+want to find Var(X) for a random variable X that is equal to 1 or 5,
+with probability 0.5 each:
+</p>
+
+<pre>
+> x <- c(1,5)
+> var(x)
+[1] 8
+> # Var(X) = E[(X - EX)^2] = E[(X - 3)^2] = E(2^2) = 4
+> mean((x - mean(x))^2)
+[1] 4
+> mean(x^2) - (mean(x))^2
+[1] 4
+</pre>
+
+<p>
+So, R gave us a value of 8 when it should be 4.  What happened?
+</p>
+
+<p>
+In evaluating Var(X), R is treating x as a sample of size 2 from some
+population, with the goal of estimating the population variance
+&sigma;<sup>2</sup>.  Classical stat does this as
+</p>
+
+<p>
+&Sigma;
+<sup>n</sup>
+<sub>i=1</sub>
+(x<sub>i</sub> - xbar)<sup>2</sup> / (n-1)
+</p>
+
+<p>
+with xbar being the sample mean, &Sigma;
+<sup>n</sup>
+<sub>i=1</sub>
+x<sub>i</sub> / n
+</p>
+
+<p>
+Dividing by n-1 instead of n is done for something called
+<i>unbiasedness</i>, debatable but certainly not what we want here in
+our nonsampling context.  Here, c(1,5) IS our population.
+</p>
+
+<p>
+Note too that even that value of 4 would be wrong if X = 1 and X = 5
+have different probabilities, say 0.8 and 0.2:
+</p>
+
+<pre>
+> probs <- c(0.8,0.2)
+> sum(probs * x^2) - (sum(probs * x))^2
+[1] 2.56
+</pre>
+
+<b>Sept. 27, 1340:</b>
+
+<p>
+Each of the famous distribution families in our undergrad probability
+review have R functions available, in fact four of them, with initial
+letters d, p, q and r.  The documentation states that 'd' stands for
+"density," which is a little misleading.
+</p>
+
+<p>
+
+For a discrete distribution family, the 'd' gives the 
+probability mass function, i.e. probabilities of individual data values.
+These are not density functions in the usual sense of continuous random
+variables.  (This is a measure theory thing, so the word <i>density</i>
+is technically correct but not in the sense of undergrad probability.)
+
+</p>
+
+<p>
+Also, the argument <b>x</b> is ill-described as "a vector of quantiles."
+This makes sense for the 'p' and 'q' functions, but for 'd' the argument
+simply is the values whose probabilities one wishes to find.  Example:
+</p>
+
+<pre>
+# probabilities of getting 4, 5, 6 or 7 heads out of 10 coin tosses
+> dbinom(4:7,10,0.5)
+[1] 0.2050781 0.2460938 0.2050781 0.1171875
+</pre>
+
+<b>Sept. 27, 1035:</b>
+
+<p>
+<i>
+Quiz notes:
+</i>
+</p>
+
+<UL>
+
+<li> I always try to arrange the quiz problems in increasing order of
+difficulty.  Usually the first one or two problems are intended to be
+very quick and easy, just to make sure everyone gets some points.  The
+last problem is sometimes rather challenging.
+</li> </p> 
+
+<li> I will often give hints as the quiz day approaches.  I gave one in
+class yesterday.  Here is another:  Problem 1d of the homework, using
+the Laws of Total Expectation and Variance, will be excellent
+preparation for the quiz.
+</li> </p> 
+
+<li> You can get an idea of the quiz format by looking at
+<a
+href="https://heather.cs.ucdavis.edu/~matloff/132/OldExams/F19A02Quiz6Questions.txt">
+this old quiz from ECS 132.</a>  Note that some problems are labled
+"R code answer," while the non-code ones are labeled "Text answer."
+It's a different course but this example should be helpful.
+BTW, solutions are 
+<a
+href="https://heather.cs.ucdavis.edu/~matloff/132/OldExams/F19A02Quiz6Answers.txt">
+here. </a> 
+</li> </p> 
+
+</UL>
+
+<p>
+<i>
+Homework notes:
+</i>
+</p>
+
+<p>
+Jay asked me if you are allowed to submit <b>.Rmd</b> files (R Markdown)
+rather than <b>.R</b>.  The answer is no.
+</p>
+
+<p>
+I need to be able to run your code, including running it inside the R
+debugging tool.  BTW, this is a great way in general, not just in R, to
+learn about someone else's code--run the code one line at a time from
+within a debugging tool.  That would be impossible from within R
+Markdown.
+</p>
+
+<b>Sept. 26, 2135:</b>
+
+<p>
+I really don't want you to spend a lot of time on Problem 1c.  Problems
+2 and 3 are so important.  So, in Problem 1c, just do the first part (a
+double integral).  If you want to do the triple integral, you'll get
+Extra Credit, but again, give priority to the other problems.
+</p>
+
+<b>Sept. 26, 2050:</b>
+
+<p>
+In Problem 1c of the homework, you are finding probabilities involving
+continuous random variables.  A probability involving T<sub>1</sub>,
+T<sub>2</sub>,...,T<sub>k</sub> is computed by integrating the joint
+density function of the k variables over the region indicated by the
+desired probability.  If the T<sub>i</sub> are independent, then their
+joint density is the product of their <i>marginal</i>, i.e. individual,
+densities, in this case a product of exponential functions.  But what
+about the limits of integration?
+</p>
+
+<p>
+Again, this may be something you've probably forgotten from your undergrad
+days.  So, I've written up (literally written, by hand) a
+<a href="https://heather.cs.ucdavis.edu/MultipleIntegrals.jpg">tutorial</a> 
+on this.
+</p>
+
+<b>Sept. 26, 1825:</b>
+
+<p>
+Note that it is absolutely critical that you have a copy of our textbook
+for the quizzes.  Quiz questions will often refer to a page in the book.
+</p>
+
+<p>
+As I've said before, I recomend that you have a hardcopy of the book.
+You are allowed to bring any printed matter to the quizzes, not just our
+textbook but also your notes, your undergrad probability book (or any,
+for that matter), etc.
+</p>
+
+<p>
+OMSI allows you to specify one PDF document to be viewed via OMSI.  (You
+are not allowed to access the Internet etc. during the quizzes; your
+OMSI window must fill your screen at all times.)  That could be the PDF
+form or our text, say, or spliced-together miscellaneous materials.
+</p>
+
+<p>
+Once again, make sure nothing goes wrong with OMSI on Quiz 1.  Do a full
+dry run, either on your own or with Jay's server (should be up soon; he
+will announce it).  In the latter case,
+you may wish to confirm with him afterward that your uploaded solutions
+did reach his server.
+</p>
+
+<p>
+As mentioned, mathematical quiz problems will require R code as the form
+of your answer.  Do not do algebraic simplification, because having the
+full code will show your thinking, and may result in your getting
+partial credit if your answer is wrong.
+</p>
+
+<p>
+Some quiz problems will be qualitative in nature, and thus will not
+involve R code.  These could be fill-in-the-blank, multiple choice etc.
+</p>
+
+<b>Sept. 26, 1545:</b>
+
+<p>
+In one of the examples in Saturday's blog post, I had Y, given X, being
+geometrically distributed with success probability X.  That's
+impossible, since a probability must be in [0,1] and Erlang
+random variables take values from 0 to &infin;.
+So, I changed it to Y | X having an exponential distribution.  
+Profuse apologies!
+</p>
+
+<p>
+Also, in my office hour today, it arose that some students may not
+know/remember multivariate calculus very well, in terms of multiple
+intergrals.  I'll write up a tutorial and post it this evening.
+</p>
+
+<b>Sept. 26, 1500:</b>
+
+<p>
+A student pointed out some broken links in the homework specs and the
+syllabus.  I've fixed them now.
+</p>
+
+<p>
+There also appears to be an error in Saturday's blog post.  Will fix and
+announce on the blog by this evening.
+</p>
+
+<b>Sept. 26, 1120:</b>
+
+<p>
+Not sure I mentioned this before:  All quizzes are open book.
+</p>
+
+<p>
+You are responsible for the reading up through the coverage point of a
+quiz.  In our case here, there were two items you are expected to cover
+on your own--the linear algebra review and R.  You will be using R on
+the quizzes and homework.
+</p>
+
+<p>
+Someone asked about the term <i>period</i> of a state after class.  I'll
+post more on this later today.
+</p>
+
+<b>Sept. 24, 1240:</b>
+
+<p>
+This will be a long blog post, but one that will be 
+<b>
+very useful to you in Hwk 1 and in the course as a whole.  
+</b>
+Please bear with me.
+</p>
+
+<i>Iterated expectation and variance</i>
+
+<p>
+Yesterday we covered the PSB chapter titled, "Stop and Review:  Probability
+Structures," a review of some major aspects of undergraduate
+probability.  That chapter ended with Equations (10.28) and (10.29),
+iterated expectation.  Treating conditional expected value as a random
+variable (to be explained on Monday), the equations say
+</p>
+
+<p>
+EY = E[ E(Y|X) ] 
+</p>
+
+<p>
+The analog for variance, also to be covered on Monday, is
+</p>
+
+<p>
+Var(Y) = E[ Var(Y|X)] + Var[ E(Y|X)]
+</p>
+
+<p>
+On Monday we will cover those equations in detail, in SRC pp.52-54.  But
+as I said yesterday, you'll need this material for Hwk 1, so I want to
+discuss of this here in the blog now.
+</p>
+
+<i>Probability and expected value as long-run quantities</i>
+
+<p>
+As I explained yesterday, most probability books, even at the
+undergraduate level, define things in terms of set theory, i.e. unions
+and intersections.  I believe this destroys the intuition.  Instead, I
+define things this way:
+</p>
+
+<UL>
+
+<li> Say we want to find the probability that some event A occurs.  We
+imagine repeating the process infinitely many times, and define P(A) to
+be the long-run proportion of the time that A occurs among those
+repetitions.
+</li> </p> 
+
+<li> 
+For a random variable X, EX is defined as the long-run average 
+value of X in infinitely many repetitions.
+</li> </p>
+
+<li> 
+Conditional quantities P(A | B) and E(X | B) are defined similarly,
+with the key difference that we restrict our attention to <i>only those
+repetitions</i> in which B occurs.
+</li> </p>
+
+</UL>
+
+<i>Formulas for expected value</i>
+
+<p>
+If X is a discrete random variable, then
+</p>
+
+<p>
+EX = &Sum;<sub>c</sub> c P(X = c)
+</p>
+
+<p>
+where the summation is over the values that X can take on.
+</p>
+
+<p>
+(This actually follows from the "long-run frequency" definition; see the
+<a href="https://github.com/matloff/probstatbook/blob/master/ProbStatBook.pdf">
+full book</a> if you are curious.)
+</p>
+
+<p>
+For the conditional case:
+</p>
+
+<p>
+E(X | B) = &Sum;<sub>c</sub> c P(X = c | B)
+</p>
+
+<p>
+Now, what about the expected value of a function of X, E[g(X)]?  Say g
+is the squaring function.
+</p>
+
+<p>
+It again follows immediately from the "long-run average" definition,
+in this case the long-run average of X<sup>2</sup>, that
+</p>
+
+<p>
+E[g(X)] = &Sum;<sub>c</sub> g(c) P(X = c)
+</p>
+
+<p>
+<b>Example:</b>  Say X = 1 or 2, with probability 0.2 and 0.8.  Let's find EX
+and Var(X).
+</p>
+
+<p>
+EX = 1 (0.2) + 2 (0.8) = 1.8
+</p>
+
+<p>
+Var(X) = E(X<sup>2</sup>) - (EX)<sup>2</sup>
+= [1<sup>2</sup> (0.2) + 2<sup>2</sup> (0.8)] - 1.8<sup>2</sup>
+= 0.16
+</p>
+
+<p>
+For a continuous random variable X, sums become integrals, and P(X = c)
+becomes the density f<sub>X</sub> (c):
+</p>
+
+<p>
+EX = &int; c f<sub>X</sub>(c) dc
+</p>
+
+<p>
+E[g(X)] = &int; g(c) f<sub>X</sub>(c) dc
+</p>
+
+<i>Iterated expectation, "Pythagorean Theorem" for variance (PTFV)</i>
+
+<p>
+Example:  Say we roll a fair die, resulting in X dots.  Then we toss a
+fair coin X times resulting in Y heads.  Let's find EY and Var(Y).
+</p>
+
+<p>
+The review recalled for us the fact that a binomial random variable with
+n trials and success probability p has mean np and variance np(1-p). So
+</p>
+
+<p>
+E(Y | X) = X (0.5) = 0.5 X
+</p>
+
+<p>
+and
+</p>
+
+<p>
+Var(Y | X) = X (0.25)
+</p>
+
+<p>
+And of course, 
+</p>
+
+<p>
+P(X = c) = 1/6, c = 1,2,...,6
+</p>
+
+<p>
+Now, 
+</p>
+
+<p>
+To get EY, apply EY = E[ E(Y|X) ]: 
+</p>
+
+<p>
+EY = E(0.5X) = 0.5 EX = 0.5 (3.5) = 1.75
+</p>
+
+<p>
+What about the variance?  Apply
+Var(Y) = E[ Var(Y|X)] + Var[ E(Y|X)]:
+</p>
+
+Var(Y) = E[ 0.25 X] + Var(0.5 X) = 
+0.25 EX + 0.25 Var(X) = 
+0.25 (0.5) + 0.25 Var(X)
+</p>
+
+<p>
+and
+</p>
+
+<p>
+Var(X) = E(X<sup>2</sup>) - (EX)<sup>2</sup> =
+[1<sup>2</sup> (1/6) + 2<sup>2</sup> (1/6) + ... + 6<sup>2</sup> (1/6)] -
+3.5<sup>2</sup>
+</p>
+
+<p>
+<b>Example:</b>
+Say X has an Erlang distribution (see our review), with r = 3
+and &lambda; = 1.  Also, suppose that given X, Y has an exponential
+distribution with &lambda; = X.  (Both the Erlang and exponential
+distribution families have the symbol &lambda; in their formulas, but
+with two different distributions here, X and Y|X, we have separate
+&lambda;s.) Find EY and Var(Y).
+</p>
+
+<p>
+We'll need the mean and variance of Erlang distributions.
+Unfortunately, the review doesn't show the mean and variance for the
+Erlang family, but since an Erlang random variable is the sum of r iid
+exponential random variables, we can get our mean and variance for X: 
+
+</p>
+
+<p>
+
+The review does tell us that the mean and variance of an exponential
+random variable are 1/&lambda; and 1/&lambda;<sup>2</sup>.  
+For independent random variables both means and variance are additive.
+So a sum of r independent exponential random variable has mean and
+variance r/&lambda; and r/&lambda;<sup>2</sup>.  
+</p>
+
+<p>
+
+So
+</p>
+
+<p>
+E(Y | X) = 3/X
+</p>
+
+<p>
+and 
+</p>
+
+<p>
+Var(Y | X) = 3/ X<sup>2</sup>
+</p>
+
+<p>
+So we can obtain our desired quantities.  first, the mean:
+</p>
+
+<p>
+EY = E{ E(Y|X) ] = E (3 / X) = 3 E(1/X)
+</p>
+
+<p>
+This is E[g(X)} with g(t) = 1/t.  So
+</p>
+
+<p>
+EY = &int;<sub>t</sub> (1/t) f(t) dt
+</p>
+
+<p>
+where f is the Erlang density for r = 3 and &lambda; = t.  
+(We can do the integral as an integration by parts if we are
+hardy enough, but otherwise just use R's <b>integrate()</b> function.)
+</p>
+
+<p>
+Var(Y) is then computed using PTFV and integrals similar to the above.
+</p>
+
+
+
+<b>Sept. 25, 1225:</b>
+
+<p>
+We will have our first quiz on Friday, September 30.  It will cover the
+undergraduate material review, especially the material on properties of
+conditional expected value and variance, which we began yesterday and
+will treat in detail on Monday.  Quiz 1 will not cover Markov chains,
+which we will begin on Wednesday.
+
+</p>
+
+<p>
+
+Though we will usually run quizzes for 25 minutes, spending the
+remaining 25 minutes on lecture, Quiz 1 will use the full 50-minute
+class time.  This will be done in recognition of your being new to the 
+<a href="https://github.com/matloff/omsi">OMSI system</a>, which we will
+use for our quizzes.  Our TA Jay will set up a server for you to do a dry
+run of OMSI, but I strongly urge you to set up your own server and dry
+run.
+
+</p>
+
+<p>
+As noted, the quizzes will count as 50% of your course grade.  I know
+that that may make some students who have a lesser background in
+undergraduate probability a little nervous, but let me emphasize:
+</p>
+
+<UL>
+
+<li> Anyone who puts in reasonable time on the homework, including the
+term project, WILL get a good homework grade.
+</li> </p>
+
+<li> Groups whose term project is especially good (which in my
+experience means most groups) will get a major extra boost to their
+course grade.
+</li> </p>
+
+<li> No one has ever received a failing grade (i.e. below B-) in my
+graduate courses, and most get grades considerably higher.
+</li> </p> 
+
+</UL>
+
+<p>
+Later today I will make another blog post, aimed at preparing you for
+Hwk 1.
+</p>
+
+<b>Sept. 24, 0950:</b>
+
+<p>
+My office hours will be MW 2-3, 3053 Kemper.  Feel free to drop by to
+ask about the homework or anything else.
+</p>
+
+<b>Sept. 22, 2200:</b>
+
+<p>
+I have shortened the item on the reading list titled, "Conditional
+expectation as a random variable."
+</p>
+
+<b>Sept. 22, 2100:</b>
+
+<p>
+The final version of Homework 1 is ready!
+</p>
+
+<b>Sept. 22, 2015:</b>
+
+<p>
+Good evening, everyone.
+</p>
+
+<p>
+I'm in the midst of finalizing <a href="Assignments/PS1.html">Homework 1
+</a>.  There will be a total of 3 problems, with Problem 1 being the one I 
+assigned over the summer.  Problem 2 will be a straightforward
+application of iterated expectations.  We will begin that topic tomorrow
+(the topic order in our class will be that of the 
+<a href="Reading.html">reading list </a>). 
+</p>
+
+<p>
+Problem 3 will look quite easy, just an R simulation.  However, I think
+you will find it thought-provoking, and I hope it sparks a lively
+discussion in your homework group.
+</p>
+
+<p>
+Keep in mind throughout the course:
+</p>
+
+<blockquote>
+
+You are welcome to come to me for hints on the homework.  Of course, you
+should seek my help only after your group has given the problem thorough 
+thought, but I am always there for you if need be.  <b>Everyone should
+be able get a good grade on the homework.</b>
+
+</blockquote>
+
+<p>
+As I said yesterday, we will take the first week to form groups.  If you
+do not form a group yourself, Jay will assign you to one by next
+Wednesday morning; in the mean time, work individually.  (Line from an
+old song: "Seems to me; We've got to solve it individually")
+</p>
+
+<b>Sept. 21, 2230:</b>
+
+<p>
+As most of you know, I assigned Hwk 1, Problem 1 over the summer,
+<a
+href="https://heather.cs.ucdavis.edu/~matloff/256/Assignments/PS1.html">
+here</a>.  But did not set a due date.  Since we will not have homework
+groups fully set until September 28, I'll set the due date to Monday, 
+October 3.  I will add a Problem 2, probably tomorrow.
+</p>
+
+<p>
+I'll also need to set office hours.  I'm a faculty adviser for
+undergrads, and need to wait a bit until that schedule is set.  But in
+the mean time, if you need to see me, just let me know and we'll set up
+a time.
+</p>
+
+<b>Sept. 21, 1450:</b>
+
+<p>
+The R language has a number of built-in functions to compute
+density/probability mass function, cumulative distribution function,
+quantile function and random number generation, for each of several
+well-known distribution families.  Type
+</p>
+
+<pre>
+?dnorm
+</pre>
+
+<p>
+to see the man page for the normal distribution family.
+</p>
+
+<p>
+Make sure you are adept at using these functions, in the case of the
+famous distribution families in pp.193-194 of the PSB reading.  Of
+course, also make sure you are good at using R's linear algebra
+functions, PSB Appendix B, as well as the <b>integrate()</b> function.
+</p>
+
+<b>Sept. 21, 1105:</b>
+
+<p>
+Someone asked me after class about the weights I'll give to 
+the various components of the course in assigning course grades, 
+in particular the term project.
+</p>
+
+<p>
+The syllabus says:
+</p>
+
+<blockquote>
+
+Tentatively, I expect to give 50% weight on the exams, and 50% on the
+assignments (problem sets, term project).
+
+</blockquote>
+
+<p>
+Two important points:
+</p>
+
+<UL>
+
+<li> As implied in that statement, and as I said in lecture today, the
+term project counts as a homework assignment.  So, if I give 3 regular
+assignments, the nominal weight of the term project will be 50/4 =
+12.5%.
+</li> </p>
+
+<li> HOWEVER, I have a grading philosophy of "All's well that ends
+well," and if a group submits a really good term project, then I will
+increase the weight of the project by a very large amount.  In other
+words:
+</li> </p>
+
+<blockquote>
+
+Submitting a really good term project will result in a MAJOR boost to
+your course grade.
+
+</blockquote>
+
+<li> 
+And, this usually occurs!  In any class that I teach, undergrad or grad,
+I find that students really rise to the occasion for the projects,
+turning in superb work.
+</li> </p>
+
+<li> Note BTW that the term project will be due during finals week, and
+there is no interactive grading for it.  For the regular 
+assignments, grading will take place about a week after
+the due date.  You will sign up for a time slot, 
+then meet with me in my office during that time.
+
+</UL>
+
+

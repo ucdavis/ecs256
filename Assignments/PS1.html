@@ -1,0 +1,109 @@
+
+<h1>
+Problem Set 1:  Review of undergraduate probability.
+</h1>
+
+<h2>Due Wednesday, October 5, 11:59 pm</h2>
+
+<UL>
+
+<li> 
+The goal of this assignment is, as noted, review, but it is required and
+will count in your course grade, just like any other assignment.  Note
+that the material on iterated expectation is technically undergraduate
+level, but is more sophisticted than what is usually covered at that
+level.
+</li> </p> 
+
+<li> Please see our course 
+<a href="../256Syllabus.html">syllabus</a> for details on writing up and
+submitting your solutions.  Note in particular the requirement that
+LaTeX and R must be used.
+</li> </p> 
+
+</UL>
+
+<h2>1.</h2>
+
+<p>
+Let X, X<sub>1</sub>,...,X<sub>n</sub> be independent, expponentially
+distributed random variables with parameter &lambda;.  
+</p>
+
+<p> <OL type = "a">
+
+<li> Find the median of X, i.e. a <i>number</i> m such that P(X < m) = 0.5,
+in terms of &lambda;.
+</li> </p> 
+
+<li>  Let the <i>random variable</i> M =
+median(X<sub>1</sub>,...,X<sub>n</sub>).
+Usually computation of medians must take into account the possibility
+of tied values; e.g. see
+<a href="http://minato.sip21c.org/msb/man/truemedian.html">
+this site.</a> But not here.  Why not?
+</li> </p> 
+
+<li> Find P(X<sub>1</sub> < 1.2 X<sub>2</sub>).
+</li> </p> 
+
+<li> Say n = 2, and that X<sub>i</sub> is exponentially distributed with
+parameter &lambda;<sub>i</sub>, i = 1,2.  We choose one of the 
+X<sub>i</sub> at random, with probability p<sub>i</sub>.  Let
+T be the result.  Find ET and Var(T) in terms of the &lambda;<sub>i</sub> and the
+p<sub>i</sub>.
+</li> </p> 
+
+</OL> </p>
+
+<h2>2.</h2>
+
+<p>
+Say the random variable X has an exponential distribution with parameter
+&lambda;.  However, our observation of it is truncated at c, so that our
+observed value T is min(X,c).  Derive a formula for Var(T) as a function
+of &lambda; and c, using the "Pythagorean Theorem for variance" (Law of
+Total Variance, SRC p.54).  Write simulation code to verify your
+formula.
+</p>
+
+<h2>3.</h2>  
+
+<p>
+The Tower Property says,
+</p>
+
+
+<pre>
+E { [E(Y | U,V)] | U} = E(Y | U)
+</pre>
+
+<p>
+Write simulation code that demonstrates this for a context in which 
+E(Y | U,V) = U + V, so E(Y | U) = U + E(V|U).
+</p>
+
+<p>
+A few tips:
+</p>
+
+<UL>
+
+<li> Though this problem simply asks for a mere simulation, you probably
+will find it rather challenging, and it may generate quite a bit of
+discussion in your group.  As noted in the blog, I'm available for help
+if you need it.
+</li> </p> 
+
+<li>
+If U and/or V are continuous random variables, you'd have to evaluate
+the conditional quantities with, e.g., U &asymp; u instead of U = u.
+To avoid such complication, I recommend making U and V discrete.
+</li> </p> 
+
+<li> Make sure you understand the intuitive content here, with
+probability and expected value being thought of as long-run frequency of
+occcurrence (PSB, Sec. 2.2) and long-run average, respectively.
+</li> </p> 
+
+</UL>
